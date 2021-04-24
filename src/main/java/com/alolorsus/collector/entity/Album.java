@@ -6,16 +6,23 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity(name = "albums")
 public class Album implements Serializable {
 
 	@Id
 	private Integer id;
+	
+	@NotEmpty
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonManagedReference
+	private Usuario usuario;
 
 	@NotEmpty
 	private String nombre;
