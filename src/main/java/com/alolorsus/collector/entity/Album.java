@@ -4,12 +4,13 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity(name = "albums")
 public class Album implements Serializable {
@@ -20,11 +21,16 @@ public class Album implements Serializable {
 	@NotEmpty
 	private String nombre;
 
-	private String juego;
+	private Juego juego;
 	
-	@OneToMany(mappedBy = "album", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "album")
 	@JsonBackReference
 	private List<Carta> cartas;
+	
+	@ManyToOne
+	@JsonManagedReference
+	private Usuario usuario;
+	
 	
 	// Getters y Setters
 
@@ -43,12 +49,12 @@ public class Album implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-	public String getJuego() {
+	
+	public Juego getJuego() {
 		return juego;
 	}
 
-	public void setJuego(String juego) {
+	public void setJuego(Juego juego) {
 		this.juego = juego;
 	}
 

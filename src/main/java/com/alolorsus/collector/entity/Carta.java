@@ -3,21 +3,22 @@ package com.alolorsus.collector.entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-@Entity
+@Entity(name = "cartas")
 public class Carta implements Serializable {
 
 	@Id
 	private Integer id;
 	
+	@NotNull
 	private Integer externalId;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JsonManagedReference
 	private Album album;
 	
