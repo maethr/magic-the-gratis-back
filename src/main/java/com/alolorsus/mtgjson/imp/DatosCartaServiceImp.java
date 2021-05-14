@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.alolorsus.collector.service.CartaService;
 import com.alolorsus.mtgjson.dao.DatosCartaDao;
 import com.alolorsus.mtgjson.entity.DatosCarta;
 import com.alolorsus.mtgjson.service.DatosCartaService;
