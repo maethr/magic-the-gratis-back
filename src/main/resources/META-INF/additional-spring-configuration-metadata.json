@@ -1,0 +1,43 @@
+{"properties": [
+  {
+    "name": "spring.album.datasource.url",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.album.datasource.url'"
+  },
+  {
+    "name": "spring.album.datasource.password",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.album.datasource.password'"
+  },
+  {
+    "name": "spring.album.datasource.driver-class-name",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.album.datasource.driver-class-name'"
+  },
+  {
+    "name": "spring.album.datasource.username",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.album.datasource.username'"
+  },
+  {
+    "name": "spring.mtgjson.datasource.url",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.mtgjson.datasource.url'"
+  },
+  {
+    "name": "spring.mtgjson.datasource.password",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.mtgjson.datasource.password'"
+  },
+  {
+    "name": "spring.mtgjson.datasource.driver-class-name",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.mtgjson.datasource.driver-class-name'"
+  },
+  {
+    "name": "spring.mtgjson.datasource.username",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.mtgjson.datasource.username'"
+  }
+  
+]}
