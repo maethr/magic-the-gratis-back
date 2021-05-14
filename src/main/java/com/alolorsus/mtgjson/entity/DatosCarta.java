@@ -10,9 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.PostLoad;
 import javax.persistence.Transient;
 
-import org.springframework.http.RequestEntity;
-import org.springframework.http.ResponseEntity;
-
 import com.alolorsus.collector.util.Rareza;
 import com.alolorsus.mtgjson.service.ScryfallService;
 
