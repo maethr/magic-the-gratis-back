@@ -20,12 +20,12 @@ public class CartaController {
 	@Autowired
 	private CartaService cartaService;
 	
-	@GetMapping("/carta/{nombre}")
+	@GetMapping("/album/carta/{nombre}")
 	public List<?> listaCartas(@PathVariable String nombre) {
 		return cartaService.getTituloCarta(nombre);
 	}
 
-	@GetMapping("/carta/{nombre}/img")
+	@GetMapping("/album/carta/{nombre}/img")
 	public Map<?, ?> imagenCarta(@PathVariable String nombre) {
 		return cartaService.getImagenCarta(nombre);
 	}

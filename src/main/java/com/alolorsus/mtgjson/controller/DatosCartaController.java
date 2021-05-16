@@ -20,6 +20,13 @@ public class DatosCartaController {
 	@Autowired
 	private DatosCartaService datosCartaService;
 	
+	@GetMapping("/carta/{nombre}")
+	public List<String> nombresCarta(@PathVariable String nombre) {
+		return datosCartaService.getNombresCartas(nombre);
+	}
+	
+	
+	
 	@GetMapping("/data/{nombre}")
 	public List<DatosCarta> datosCarta(@PathVariable String nombre) {
 		return datosCartaService.getDatosCarta(nombre);

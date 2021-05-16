@@ -10,8 +10,9 @@ import org.springframework.web.client.RestTemplate;
 @SuppressWarnings({"rawtypes","unchecked"})
 public class ScryfallService {
 	
-	static RestTemplate restTemplate = new RestTemplate();
-	static HttpHeaders headers = new HttpHeaders();
+	private static RestTemplate restTemplate = new RestTemplate();
+	
+	private static HttpHeaders headers = new HttpHeaders();
 
 	public static Map<String, String> getImagenesCarta (String scryfallId) {
 		
@@ -26,5 +27,4 @@ public class ScryfallService {
 		return imageUrls;
 		
 	}
-
 }

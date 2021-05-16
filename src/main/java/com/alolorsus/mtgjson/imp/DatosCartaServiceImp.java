@@ -17,9 +17,38 @@ public class DatosCartaServiceImp implements DatosCartaService {
 	
 	@Transactional(readOnly = true)
 	@Override
+	public List<String> getNombresCartas(String parteNombre) {
+		return datosCartaDao.findNamesByName(parteNombre);
+	}
+	
+	@Transactional(readOnly = true)
+	@Override
 	public List<DatosCarta> getDatosCarta(String nombre) {
 		List<DatosCarta> cartas = datosCartaDao.findByName(nombre);
 		return cartas;
+	}
+
+	@Override
+	public List<DatosCarta> getCartasNombre(String nombre) {
+		return null;
+	}
+
+	@Override
+	public List<DatosCarta> getCartasIlustracion(String oracleId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<DatosCarta> getCartasId(String illustrationId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DatosCarta getCarta(String scryfallId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
