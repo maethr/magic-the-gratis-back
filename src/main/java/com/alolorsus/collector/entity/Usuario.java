@@ -30,7 +30,7 @@ public class Usuario implements Serializable {
 	private List<Album> albumes;
 
 	// Getters y Setters
-
+	
 	public String getUsername() {
 		return username;
 	}

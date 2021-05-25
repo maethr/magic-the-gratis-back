@@ -16,7 +16,7 @@ public class Carta implements Serializable {
 	private Integer id;
 	
 	@NotNull
-	private Integer externalId;
+	private String externalId;
 	
 	@ManyToOne
 	@JsonManagedReference
@@ -34,11 +34,11 @@ public class Carta implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getExternalId() {
+	public String getExternalId() {
 		return externalId;
 	}
 
-	public void setExternalId(Integer externalId) {
+	public void setExternalId(String externalId) {
 		this.externalId = externalId;
 	}
 
