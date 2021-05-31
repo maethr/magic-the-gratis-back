@@ -80,12 +80,10 @@ public class UsuarioController {
 	 * Get Login
 	 ***********************************************************************************************************************************/
 
-	@GetMapping("/usuarios/login")
-	@ResponseBody
+	@PostMapping("/usuarios/login")
 	public ResponseEntity<?> getUsuarioLogin(@RequestParam String user, @RequestParam String pass) {
 
 		//pass = StringHash.getHashString(pass);
-
 		Usuario usuario = null;
 		try {
 			usuario = this.usuarioService.findByUsernameAndPassword(user, pass);
