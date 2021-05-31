@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,7 +27,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alolorsus.collector.entity.Usuario;
 import com.alolorsus.collector.service.UsuarioService;
-import com.alolorsus.util.StringHash;
 
 @RestController
 @RequestMapping("/collector")
@@ -49,7 +47,7 @@ public class UsuarioController {
 	/**
 	 * Lista de Usuarios
 	 ***********************************************************************************************************************************/
-	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
+
 	@GetMapping("/usuarios")
 	public List<Usuario> listaDeUsuarios() {
 		return this.usuarioService.findAll();
@@ -58,7 +56,7 @@ public class UsuarioController {
 	/**
 	 * Get Usuario
 	 ***********************************************************************************************************************************/
-	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
+
 	@GetMapping("/usuarios/{id}")
 	public ResponseEntity<?> getUsuario(@PathVariable String username) {
 		Usuario usuario = null;
@@ -86,7 +84,7 @@ public class UsuarioController {
 	@ResponseBody
 	public ResponseEntity<?> getUsuarioLogin(@RequestParam String user, @RequestParam String pass) {
 
-		pass = StringHash.getHashString(pass);
+		//pass = StringHash.getHashString(pass);
 
 		Usuario usuario = null;
 		try {
@@ -108,7 +106,7 @@ public class UsuarioController {
 	/**
 	 * Post create nuevo Usuario
 	 ***********************************************************************************************************************************/
-	@Secured({ "ROLE_ADMIN" })
+
 	@PostMapping("/usuario")
 	@ResponseStatus(HttpStatus.CREATED) // 201
 	public ResponseEntity<?> create(@RequestParam String username, @RequestParam String password,
@@ -123,14 +121,14 @@ public class UsuarioController {
 			status = HttpStatus.BAD_REQUEST;
 			return new ResponseEntity<>(respuesta, status);
 		}
-		
+
 		// Si el usuario no es valido
 		if (usuarioService.findByUsername(username) != null) {
 			respuesta = "El usuario ya existe";
 			status = HttpStatus.PRECONDITION_FAILED;
 			return new ResponseEntity<>(respuesta, status);
 		}
-		
+
 		// Crea el usuario con los valores
 		Usuario usuario = new Usuario();
 		usuario.setUsername(username);
@@ -138,14 +136,14 @@ public class UsuarioController {
 		usuario.setEmail(email);
 		usuario.setNombre(nombre);
 		respuesta = usuarioService.save(usuario);
-		
+
 		// Si no se ha conseguido crear
 		if (respuesta == null) {
 			respuesta = "El usuario no se ha podido crear";
 			status = HttpStatus.INTERNAL_SERVER_ERROR;
 			return new ResponseEntity<>(respuesta, status);
 		}
-		
+
 		// Si todo OK
 		status = HttpStatus.CREATED;
 		return new ResponseEntity<>(respuesta, status);
@@ -154,7 +152,7 @@ public class UsuarioController {
 	/**
 	 * Put update Usuario
 	 ***********************************************************************************************************************************/
-	@Secured({ "ROLE_ADMIN" })
+
 	@PutMapping("/usuario")
 	@ResponseStatus(HttpStatus.CREATED) // 201
 	public ResponseEntity<?> update(@Valid @RequestBody Usuario usuario, BindingResult result) {
@@ -198,7 +196,7 @@ public class UsuarioController {
 	/**
 	 * Delete Usuario
 	 ***********************************************************************************************************************************/
-	@Secured({ "ROLE_ADMIN" })
+
 	@DeleteMapping("/usuario")
 	@ResponseStatus(HttpStatus.NO_CONTENT) // 204
 	public ResponseEntity<?> delete(@RequestParam String user) {

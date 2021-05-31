@@ -12,6 +12,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+
 @Entity(name = "usuarios")
 public class Usuario implements Serializable {
 
@@ -33,7 +34,7 @@ public class Usuario implements Serializable {
 	@OneToMany(mappedBy = "usuario")
 	@JsonBackReference
 	private List<Album> albumes;
-
+	
 	
 	// Getters y Setters
 
