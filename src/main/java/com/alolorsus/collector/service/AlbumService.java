@@ -8,16 +8,22 @@ import com.alolorsus.collector.entity.Usuario;
 
 public interface AlbumService {
 	
-	public Page<Album> getAlbumsFromUser (String username, Integer pagina);
+	// Albums
 	
-	public Page<Carta> getCartasFromAlbum (Integer album_id, Integer pagina);
+	public Page<Album> getAlbumsFromUser (Usuario usuario, Integer pagina);
+	
+	public Album getAlbum (Integer album_id);
 	
 	public Album crearAlbum (String nombre, Usuario usuario);
+	
+	public void eliminarAlbum (Integer album_id);
+	
+	// Cartas
+	
+	public Page<Carta> getCartasFromAlbum (Album album, Integer pagina);
 	
 	public Carta agregarCarta (String externalId, Integer album_id);
 	
 	public void eliminarCarta (Integer carta_id);
-	
-	public void eliminarAlbum (Integer album_id);
 
 }

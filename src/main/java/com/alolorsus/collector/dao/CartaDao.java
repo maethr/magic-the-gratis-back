@@ -6,13 +6,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.alolorsus.collector.entity.Album;
 import com.alolorsus.collector.entity.Carta;
 
 @Repository
 public interface CartaDao extends JpaRepository<Carta, Integer>{
 	
 	@Query("select c from cartas c where album = ?1")
-	public Page<Carta> findByAlbum(Integer albumId, Pageable pagina);
+	public Page<Carta> findByAlbum(Album album, Pageable pagina);
 	
 	
 

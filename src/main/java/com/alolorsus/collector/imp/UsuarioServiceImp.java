@@ -21,8 +21,13 @@ public class UsuarioServiceImp implements UsuarioService {
 	}
 
 	@Override
-	public Usuario findById(String username) {
+	public Usuario findByUsername(String username) {
 		return usuarioDao.findById(username).orElse(null);
+	}
+	
+	@Override
+	public Usuario findByUsernameAndPassword(String username, String password) {
+		return usuarioDao.findByUsernameAndPassword(username, password);
 	}
 
 	@Override

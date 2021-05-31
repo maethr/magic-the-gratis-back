@@ -17,18 +17,17 @@ import com.alolorsus.collector.service.AlbumService;
 @Service
 public class AlbumServiceImp implements AlbumService {
 
+	private final int albumsPorPagina = 10;
+	private final int cartasPorPagina = 9;
+
 	@Autowired
 	private AlbumDao albumDao;
 
 	@Autowired
 	private CartaDao cartaDao;
 
-	private Integer albumsPorPagina = 10;
-	
-	private Integer cartasPorPagina = 9;
-
 	@Override
-	public Page<Album> getAlbumsFromUser(String usuario, Integer pagina) {
+	public Page<Album> getAlbumsFromUser(Usuario usuario, Integer pagina) {
 		if (pagina == null)
 			pagina = 0;
 		Pageable pag = PageRequest.of(pagina, albumsPorPagina);
@@ -36,11 +35,11 @@ public class AlbumServiceImp implements AlbumService {
 	}
 
 	@Override
-	public Page<Carta> getCartasFromAlbum(Integer album_id, Integer pagina) {
+	public Page<Carta> getCartasFromAlbum(Album album, Integer pagina) {
 		if (pagina == null)
 			pagina = 0;
 		Pageable pag = PageRequest.of(pagina, cartasPorPagina);
-		return cartaDao.findByAlbum(album_id, pag);
+		return cartaDao.findByAlbum(album, pag);
 	}
 
 	@Override
@@ -59,9 +58,14 @@ public class AlbumServiceImp implements AlbumService {
 		Album album = albumDao.findById(album_id).orElse(null);
 		if (album != null) {
 			carta.setAlbum(album);
-			
-		} // else error
+
+		}
 		return cartaDao.save(carta);
+	}
+
+	@Override
+	public Album getAlbum(Integer album_id) {
+		return albumDao.findById(album_id).orElse(null);
 	}
 
 	@Override
@@ -73,6 +77,5 @@ public class AlbumServiceImp implements AlbumService {
 	public void eliminarAlbum(Integer album_id) {
 		albumDao.deleteById(album_id);
 	}
-
 
 }

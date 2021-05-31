@@ -8,7 +8,9 @@ public interface UsuarioService {
 	
 	public List<Usuario> findAll();
 	
-	public Usuario findById(String username);
+	public Usuario findByUsername(String username);
+	
+	public Usuario findByUsernameAndPassword(String username, String password);
 	
 	// public Usuario findByEmail();
 	

@@ -1,13 +1,15 @@
 package com.alolorsus.collector.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
-
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity(name = "usuarios")
@@ -16,21 +18,25 @@ public class Usuario implements Serializable {
 	@Id
 	private String username;
 
-	@NotNull
+	@NotEmpty
 	private String password;
 
-	@NotNull
+	@NotEmpty
 	private String nombre;
 
-	@NotNull
+	@NotEmpty
 	private String email;
+
+	@Temporal(TemporalType.DATE)
+	private Date createAt;
 
 	@OneToMany(mappedBy = "usuario")
 	@JsonBackReference
 	private List<Album> albumes;
 
-	// Getters y Setters
 	
+	// Getters y Setters
+
 	public String getUsername() {
 		return username;
 	}
@@ -69,6 +75,14 @@ public class Usuario implements Serializable {
 
 	public void setAlbumes(List<Album> albumes) {
 		this.albumes = albumes;
+	}
+
+	public Date getCreateAt() {
+		return createAt;
+	}
+
+	public void setCreateAt(Date createAt) {
+		this.createAt = createAt;
 	}
 
 	private static final long serialVersionUID = 1L;
