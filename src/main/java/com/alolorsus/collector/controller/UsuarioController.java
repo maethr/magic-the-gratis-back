@@ -80,9 +80,9 @@ public class UsuarioController {
 	 * Get Login
 	 ***********************************************************************************************************************************/
 
-	@GetMapping("/usuarios/login")
+	@PostMapping("/usuarios/login")
 	@ResponseBody
-	public ResponseEntity<?> getUsuarioLogin(@RequestParam String user, @RequestParam String pass) {
+	public ResponseEntity<?> usuarioLogin(@RequestParam String user, @RequestParam String pass) {
 
 		//pass = StringHash.getHashString(pass);
 

@@ -15,14 +15,11 @@ import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity(name = "albums")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
-property = "id")
-@JsonIdentityReference(alwaysAsId = true)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Album implements Serializable {
 
 	@Id
@@ -34,16 +31,15 @@ public class Album implements Serializable {
 
 	@Enumerated(EnumType.STRING)
 	private Juego juego;
-	
+
 	@OneToMany(mappedBy = "album")
 	@JsonBackReference
 	private List<Carta> cartas;
-	
+
 	@ManyToOne
 	@JsonManagedReference
 	private Usuario usuario;
-	
-	
+
 	// Getters y Setters
 
 	public Usuario getUsuario() {
@@ -69,7 +65,7 @@ public class Album implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
 	public Juego getJuego() {
 		return juego;
 	}

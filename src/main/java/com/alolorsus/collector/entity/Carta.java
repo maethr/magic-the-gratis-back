@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity(name = "cartas")
@@ -22,6 +23,7 @@ public class Carta implements Serializable {
 	
 	@ManyToOne
 	@JsonManagedReference
+	// @JsonIdentityReference(alwaysAsId = true)
 	private Album album;
 	
 	
