@@ -81,7 +81,7 @@ public class UsuarioController {
 
 	@PostMapping("/usuarios/login")
 
-	public ResponseEntity<?> getUsuarioLogin(@RequestParam String user, @RequestParam String pass) {
+	public ResponseEntity<?> usuarioLogin(@RequestParam String user, @RequestParam String pass) {
 
 		//pass = StringHash.getHashString(pass);
 		Usuario usuario = null;
