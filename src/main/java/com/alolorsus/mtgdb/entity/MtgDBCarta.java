@@ -1,16 +1,11 @@
 package com.alolorsus.mtgdb.entity;
 
 import java.io.Serializable;
-import java.util.Map;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
-import javax.persistence.PostLoad;
-import javax.persistence.Transient;
-
-import com.alolorsus.mtgdb.service.test.ScryfallService;
 
 
 @Entity(name = "cards")
@@ -34,24 +29,7 @@ public class MtgDBCarta implements Serializable {
 	private String scryfallIllustrationId;
 	private String scryfallOracleId;
 	
-	
-	// TEST //////////////////////////////////
-	@Transient
-	private Map<String, String> urls;
-	
-	@PostLoad
-	public void setUrls() {
-		setUrls(ScryfallService.getImagenesCarta(scryfallId));
-	}
-	
-	public Map<String, String> getUrls() {
-		return urls;
-	}
-	
-	public void setUrls(Map<String, String> urls) {
-		this.urls = urls;
-	}
-	//////////////////////////////////////////
+	private String setCode;
 
 	
 	// Getters
@@ -90,6 +68,14 @@ public class MtgDBCarta implements Serializable {
 
 	public String getScryfallOracleId() {
 		return scryfallOracleId;
+	}
+
+	public String getSetCode() {
+		return setCode;
+	}
+
+	public void setSetCode(String setCode) {
+		this.setCode = setCode;
 	}
 
 	private static final long serialVersionUID = 1L;

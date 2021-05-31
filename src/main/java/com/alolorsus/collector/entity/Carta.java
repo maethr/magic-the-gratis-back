@@ -2,6 +2,7 @@ package com.alolorsus.collector.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity(name = "cartas")
@@ -19,11 +21,12 @@ public class Carta implements Serializable {
 	private Integer id;
 	
 	@NotEmpty
-	private String externalId;
+	@Column(name = "scryfallId")
+	private String scryfallId;
 	
 	@ManyToOne
 	@JsonManagedReference
-	// @JsonIdentityReference(alwaysAsId = true)
+	@JsonIdentityReference(alwaysAsId = true)
 	private Album album;
 	
 	
@@ -39,12 +42,12 @@ public class Carta implements Serializable {
 		this.id = id;
 	}
 
-	public String getExternalId() {
-		return externalId;
+	public String getScryfallId() {
+		return scryfallId;
 	}
 
-	public void setExternalId(String externalId) {
-		this.externalId = externalId;
+	public void setScryfallId(String scryfallId) {
+		this.scryfallId = scryfallId;
 	}
 
 	public Album getAlbum() {

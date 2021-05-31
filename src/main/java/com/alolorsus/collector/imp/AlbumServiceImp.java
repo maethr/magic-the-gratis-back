@@ -52,9 +52,9 @@ public class AlbumServiceImp implements AlbumService {
 	}
 
 	@Override
-	public Carta agregarCarta(String externalId, Integer album_id) {
+	public Carta agregarCarta(String scryfallId, Integer album_id) {
 		Carta carta = new Carta();
-		carta.setExternalId(externalId);
+		carta.setScryfallId(scryfallId);
 		Album album = albumDao.findById(album_id).orElse(null);
 		if (album != null) {
 			carta.setAlbum(album);
