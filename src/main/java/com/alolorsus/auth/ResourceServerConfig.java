@@ -21,9 +21,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers(HttpMethod.GET, "/ecomove/v0.1/usuarios/login").permitAll()
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/collector/usuarios/login").permitAll()
 				//ESTO ESTA MUY MAL HABRA QUE ACEPTAR SOLO LOS DATOS DE IOT CENTRAL
-				.antMatchers(HttpMethod.POST, "/ecomove/v0.1/infraccion", "/ecomove/v0.1/telemetria").permitAll()
+				// .antMatchers(HttpMethod.POST, "/ecomove/v0.1/infraccion", "/ecomove/v0.1/telemetria").permitAll()
 				/*
 				 * .antMatchers(HttpMethod.GET, "/ecomove/v0.1/usuarios",
 				 * "/ecomove/v0.1/usuarios/pg/{pagina}", "/ecomove/v0.1/usuarios/{id}",
