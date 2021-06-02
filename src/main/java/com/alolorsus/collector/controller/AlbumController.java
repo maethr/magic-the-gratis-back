@@ -33,6 +33,23 @@ public class AlbumController {
 	private UsuarioService usuarioService;
 	
 
+	@GetMapping("/album/{id}")
+	public ResponseEntity<Object> getAlbum(@PathVariable Integer id) {
+		
+		// Obtener la página
+		Album album = albumService.getAlbum(id);
+
+		// Si el album no se ha podido obtener
+		if (album == null) {
+			String respuesta = "No existe el album solicitado";
+			return new ResponseEntity<>(respuesta, HttpStatus.NOT_FOUND);
+		}
+
+		// Si todo OK
+		return new ResponseEntity<>(album, HttpStatus.OK);
+	}
+	
+
 	@GetMapping("/user/{user}/albums")
 	public ResponseEntity<Object> getAlbumsUsuario(@PathVariable String user, @Nullable @RequestParam Integer page) {
 		

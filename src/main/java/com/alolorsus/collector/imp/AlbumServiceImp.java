@@ -17,7 +17,7 @@ import com.alolorsus.collector.service.AlbumService;
 @Service
 public class AlbumServiceImp implements AlbumService {
 
-	private final int albumsPorPagina = 10;
+	private final int albumsPorPagina = 9;
 	private final int cartasPorPagina = 9;
 
 	@Autowired
