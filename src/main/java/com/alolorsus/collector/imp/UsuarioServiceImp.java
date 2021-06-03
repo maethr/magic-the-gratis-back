@@ -3,6 +3,8 @@ package com.alolorsus.collector.imp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.alolorsus.collector.dao.UsuarioDao;
@@ -18,6 +20,11 @@ public class UsuarioServiceImp implements UsuarioService {
 	@Override
 	public List<Usuario> findAll() {
 		return (List<Usuario>) usuarioDao.findAll();
+	}
+	
+	@Override
+	public Page<Usuario> findAll(Pageable pageable) {
+		return this.usuarioDao.findAll(pageable);
 	}
 
 	@Override

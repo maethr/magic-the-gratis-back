@@ -10,8 +10,12 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -51,6 +55,12 @@ public class UsuarioController {
 	@GetMapping("/usuarios")
 	public List<Usuario> listaDeUsuarios() {
 		return this.usuarioService.findAll();
+	}
+	
+	@GetMapping("/usuarios/page/{pagina}")
+	public Page<Usuario> listaDeUsuarios(@PathVariable Integer pagina) {
+		Pageable pageable = PageRequest.of(pagina, 7);
+		return this.usuarioService.findAll(pageable);
 	}
 
 	/**
