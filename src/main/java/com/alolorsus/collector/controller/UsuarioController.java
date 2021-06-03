@@ -1,5 +1,6 @@
 package com.alolorsus.collector.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -133,6 +134,7 @@ public class UsuarioController {
 		usuario.setPassword(password);
 		usuario.setEmail(email);
 		usuario.setNombre(nombre);
+		usuario.setCreateAt(new Date());
 		respuesta = usuarioService.save(usuario);
 
 		// Si no se ha conseguido crear
