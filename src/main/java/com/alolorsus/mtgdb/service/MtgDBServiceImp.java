@@ -22,27 +22,43 @@ public class MtgDBServiceImp implements MtgDBService {
 	}
 
 	@Override
-	public Page<MtgDBCarta> getCartasGroupByOracle(String nombre, Integer pagina) {
+	public Page<MtgDBCarta> getByNombreGroupByOracle(String nombre, Integer pagina) {
 		if (pagina == null)
 			pagina = 0;
 		Pageable pag = PageRequest.of(pagina, cartasPorBusqueda);
-		return dao.findByNombre(nombre, pag);
+		return dao.findByNameGroupByOracle(nombre, pag);
 	}
 
 	@Override
-	public Page<MtgDBCarta> getCartasGroupByIlustracion(String scryfallOracleId, Integer pagina) {
+	public Page<MtgDBCarta> getByOracleGroupByIlustracion(String scryfallOracleId, Integer pagina) {
 		if (pagina == null)
 			pagina = 0;
 		Pageable pag = PageRequest.of(pagina, cartasPorBusqueda);
-		return dao.findByScryfallOracleId(scryfallOracleId, pag);
+		return dao.findByOracleGroupByIllustration(scryfallOracleId, pag);
 	}
 
 	@Override
-	public Page<MtgDBCarta> getCartas(String scryfallIllustrationId, Integer pagina) {
+	public Page<MtgDBCarta> getByIlustracionGroupById(String scryfallIllustrationId, Integer pagina) {
 		if (pagina == null)
 			pagina = 0;
 		Pageable pag = PageRequest.of(pagina, cartasPorBusqueda);
-		return dao.findByScryfallIllustrationId(scryfallIllustrationId, pag);
+		return dao.findByIllustrationGroupById(scryfallIllustrationId, pag);
+	}
+
+	@Override
+	public Page<MtgDBCarta> getByNombreGroupByIlustracion(String nombre, Integer pagina) {
+		if (pagina == null)
+			pagina = 0;
+		Pageable pag = PageRequest.of(pagina, cartasPorBusqueda);
+		return dao.findByNameGroupByIllustration(nombre, pag);
+	}
+
+	@Override
+	public Page<MtgDBCarta> getByNombreGroupById(String nombre, Integer pagina) {
+		if (pagina == null)
+			pagina = 0;
+		Pageable pag = PageRequest.of(pagina, cartasPorBusqueda);
+		return dao.findByNameGroupById(nombre, pag);
 	}
 
 }

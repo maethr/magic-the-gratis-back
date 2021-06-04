@@ -78,4 +78,9 @@ public class AlbumServiceImp implements AlbumService {
 		albumDao.deleteById(album_id);
 	}
 
+	@Override
+	public int countAlbumsFromUser(Usuario usuario) {
+		return albumDao.countAlbumsByUsuario(usuario);
+	}
+
 }

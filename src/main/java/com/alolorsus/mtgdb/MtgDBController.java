@@ -26,18 +26,28 @@ public class MtgDBController {
 		return service.getCarta(id);
 	}
 	
+	@GetMapping("/carta/nombre/{nombre}/oracle")
+	public Page<MtgDBCarta> getByNombreGroupByOracle (@PathVariable String nombre, @Nullable @RequestParam Integer page) {
+		return service.getByNombreGroupByOracle(nombre, page);
+	}
+	
+	@GetMapping("/carta/nombre/{nombre}/ilust")
+	public Page<MtgDBCarta> getByNombreGroupByIlustracion (@PathVariable String nombre, @Nullable @RequestParam Integer page) {
+		return service.getByNombreGroupByIlustracion(nombre, page);
+	}
+	
 	@GetMapping("/carta/nombre/{nombre}")
-	public Page<MtgDBCarta> getOraclesPorNombre (@PathVariable String nombre, @Nullable @RequestParam Integer page) {
-		return service.getCartasGroupByOracle(nombre, page);
+	public Page<MtgDBCarta> getByNombreGroupById (@PathVariable String nombre, @Nullable @RequestParam Integer page) {
+		return service.getByNombreGroupById(nombre, page);
 	}
 	
-	@GetMapping("/carta/oracle/{oracle_id}")
-	public Page<MtgDBCarta> getIlustracionesPorOracle (@PathVariable String oracle_id, @Nullable @RequestParam Integer page) {
-		return service.getCartasGroupByIlustracion(oracle_id, page);
+	@GetMapping("/carta/oracle/{oracle_id}/ilust")
+	public Page<MtgDBCarta> getByOracleGroupByIlustracion (@PathVariable String oracle_id, @Nullable @RequestParam Integer page) {
+		return service.getByOracleGroupByIlustracion(oracle_id, page);
 	}
 	
-	@GetMapping("/carta/illustration/{illust_id}")
-	public Page<MtgDBCarta> getCartasPorIlustracion (@PathVariable String illust_id, @Nullable @RequestParam Integer page) {
-		return service.getCartas(illust_id, page);
+	@GetMapping("/carta/ilust/{ilust_id}")
+	public Page<MtgDBCarta> getByIlustracionGroupById (@PathVariable String ilust_id, @Nullable @RequestParam Integer page) {
+		return service.getByIlustracionGroupById(ilust_id, page);
 	}
 }

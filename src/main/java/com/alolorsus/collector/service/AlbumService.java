@@ -18,6 +18,8 @@ public interface AlbumService {
 	
 	public void eliminarAlbum (Integer album_id);
 	
+	public int countAlbumsFromUser (Usuario usuario);
+	
 	// Cartas
 	
 	public Page<Carta> getCartasFromAlbum (Album album, Integer pagina);
