@@ -6,6 +6,10 @@ import com.alolorsus.mtgdb.entity.MtgDBCarta;
 
 public interface MtgDBService {
 	
+	public MtgDBCarta getCarta (String scryfallId);
+	
+	///// Buscador
+	
 	public Page<MtgDBCarta> getByNombreGroupByOracle (String nombre, Integer pagina);
 	
 	public Page<MtgDBCarta> getByNombreGroupByIlustracion (String nombre, Integer pagina);
@@ -16,6 +20,11 @@ public interface MtgDBService {
 	
 	public Page<MtgDBCarta> getByIlustracionGroupById (String scryfallIllustrationId, Integer pagina);
 	
-	public MtgDBCarta getCarta (String scryfallId);
-
+	///// Buscador set
+	
+	public Page<MtgDBCarta> getByNombreGroupByOracle (String nombre, String set, Integer pagina);
+	
+	public Page<MtgDBCarta> getByNombreGroupByIlustracion (String nombre, String set, Integer pagina);
+	
+	public Page<MtgDBCarta> getByNombreGroupById (String nombre,String set, Integer pagina);
 }

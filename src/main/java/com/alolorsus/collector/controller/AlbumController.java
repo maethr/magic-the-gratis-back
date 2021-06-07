@@ -1,5 +1,7 @@
 package com.alolorsus.collector.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -61,6 +63,29 @@ public class AlbumController {
 
 		// Obtener la página
 		Page<Album> albums = albumService.getAlbumsFromUser(usuario, page);
+
+		// Si el album no se ha podido obtener
+		if (albums == null) {
+			String respuesta = "No existen los albums solicitados";
+			return new ResponseEntity<>(respuesta, HttpStatus.NOT_FOUND);
+		}
+
+		// Si todo OK
+		return new ResponseEntity<>(albums, HttpStatus.OK);
+	}
+	
+	@GetMapping("/user/{user}/albums/all")
+	public ResponseEntity<Object> getAllAlbumsFromUsuario(@PathVariable String user) {
+
+		// Si el usuario no existe
+		Usuario usuario = usuarioService.findByUsername(user);
+		if (user == null) {
+			String respuesta = "El usuario no existe";
+			return new ResponseEntity<>(respuesta, HttpStatus.PRECONDITION_FAILED);
+		}
+
+		// Obtener la lista
+		List<Album> albums = albumService.getAllAlbumsFromUser(usuario);
 
 		// Si el album no se ha podido obtener
 		if (albums == null) {
@@ -133,18 +158,18 @@ public class AlbumController {
 		return new ResponseEntity<>(paginaCartas, HttpStatus.OK);
 	}
 
-	@PutMapping("/album")
-	public ResponseEntity<Object> addCartaToAlbum(String carta, Integer album) {
-
+	@PutMapping("/album/{id}")
+	public ResponseEntity<Object> addCartaToAlbum(@RequestParam String carta, @PathVariable Integer id) {
+		System.out.println("a");
 		// Si el album no existe
-		Album _album = albumService.getAlbum(album);
-		if (_album == null) {
+		Album album = albumService.getAlbum(id);
+		if (album == null) {
 			String respuesta = "El usuario no existe";
 			return new ResponseEntity<>(respuesta, HttpStatus.PRECONDITION_FAILED);
 		}
 
 		// Guardar la carta
-		Carta _carta = albumService.agregarCarta(carta, album);
+		Carta _carta = albumService.agregarCarta(carta, id);
 
 		// Si no se ha podido guardar
 		if (_carta == null) {

@@ -12,6 +12,8 @@ public interface MtgDBDao extends CrudRepository<MtgDBCarta, Integer>{
 	@Query("select c from cards c where c.scryfallId like ?1 group by scryfallId")
 	public MtgDBCarta findByScryfallId(String scryfallId);
 	
+	///// Buscador
+	
 	@Query("select c from cards c where c.name like %?1% group by scryfallOracleId")
 	public Page<MtgDBCarta> findByNameGroupByOracle (String nombre, Pageable pagina);
 	
@@ -27,4 +29,14 @@ public interface MtgDBDao extends CrudRepository<MtgDBCarta, Integer>{
 	@Query("select c from cards c where c.scryfallIllustrationId like ?1 group by scryfallId")
 	public Page<MtgDBCarta> findByIllustrationGroupById (String scryfallIllustrationId, Pageable pagina);
 	
+	////// Buscador set
+	
+	@Query("select c from cards c where c.name like %?1% and c.setCode like ?2 group by scryfallOracleId")
+	public Page<MtgDBCarta> findByNameAndSetGroupByOracle (String nombre, String setCode, Pageable pagina);
+	
+	@Query("select c from cards c where c.name like %?1% and c.setCode like ?2 group by scryfallIllustrationId")
+	public Page<MtgDBCarta> findByNameAndSetGroupByIllustration (String nombre, String setCode, Pageable pagina);
+	
+	@Query("select c from cards c where c.name like %?1% and c.setCode like ?2 group by scryfallId")
+	public Page<MtgDBCarta> findByNameAndSetGroupById (String nombre, String setCode, Pageable pagina);
 }

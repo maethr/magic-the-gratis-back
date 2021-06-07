@@ -1,5 +1,7 @@
 package com.alolorsus.collector.imp;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -58,7 +60,7 @@ public class AlbumServiceImp implements AlbumService {
 		Album album = albumDao.findById(album_id).orElse(null);
 		if (album != null) {
 			carta.setAlbum(album);
-
+			System.out.println("casi");
 		}
 		return cartaDao.save(carta);
 	}
@@ -81,6 +83,11 @@ public class AlbumServiceImp implements AlbumService {
 	@Override
 	public int countAlbumsFromUser(Usuario usuario) {
 		return albumDao.countAlbumsByUsuario(usuario);
+	}
+
+	@Override
+	public List<Album> getAllAlbumsFromUser(Usuario usuario) {
+		return albumDao.findByUsuario(usuario);
 	}
 
 }

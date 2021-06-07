@@ -22,6 +22,8 @@ public class MtgDBCarta implements Serializable {
 	
 	private String colors;
 	
+	private String text;
+	
 	@Enumerated(EnumType.STRING)
 	private Rareza rarity;
 	
@@ -77,6 +79,16 @@ public class MtgDBCarta implements Serializable {
 	public void setSetCode(String setCode) {
 		this.setCode = setCode;
 	}
+	
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+
 
 	private static final long serialVersionUID = 1L;
 

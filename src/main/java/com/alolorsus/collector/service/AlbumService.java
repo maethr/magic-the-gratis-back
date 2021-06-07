@@ -1,5 +1,7 @@
 package com.alolorsus.collector.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 
 import com.alolorsus.collector.entity.Album;
@@ -9,6 +11,8 @@ import com.alolorsus.collector.entity.Usuario;
 public interface AlbumService {
 	
 	// Albums
+	
+	public List<Album> getAllAlbumsFromUser (Usuario usuario);
 	
 	public Page<Album> getAlbumsFromUser (Usuario usuario, Integer pagina);
 	
