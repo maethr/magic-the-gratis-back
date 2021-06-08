@@ -74,6 +74,16 @@ public class Album implements Serializable {
 		this.juego = juego;
 	}
 
+	public List<Carta> getCartas() {
+		return cartas;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
+
 	private static final long serialVersionUID = 1L;
 
 }

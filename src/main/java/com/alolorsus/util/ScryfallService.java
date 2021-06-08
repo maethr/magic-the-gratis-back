@@ -1,4 +1,4 @@
-package com.alolorsus.mtgdb.service.test;
+package com.alolorsus.util;
 
 import java.util.Map;
 
@@ -27,5 +27,18 @@ public class ScryfallService {
 		
 		return imageUrls;
 		
+	}
+	
+	public static byte[] getImagen (String url) {
+		
+		RequestEntity<?> request = RequestEntity.get(url).headers(headers).build();
+		
+		byte[] imagen;
+		
+		ResponseEntity<byte[]> response = restTemplate.exchange(request, byte[].class);
+		
+		imagen = response.getBody();
+		
+		return imagen;
 	}
 }
