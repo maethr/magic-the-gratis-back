@@ -160,7 +160,7 @@ public class AlbumController {
 
 	@PutMapping("/album/{id}")
 	public ResponseEntity<Object> addCartaToAlbum(@RequestParam String carta, @PathVariable Integer id) {
-		System.out.println("a");
+		
 		// Si el album no existe
 		Album album = albumService.getAlbum(id);
 		if (album == null) {
@@ -180,5 +180,30 @@ public class AlbumController {
 		// Si todo OK
 		return new ResponseEntity<>(_carta, HttpStatus.ACCEPTED);
 	}
+	
+	@PutMapping("/album")
+	public ResponseEntity<Object> setNameToAlbum(@RequestParam Integer id, @RequestParam String nombre) {
+		
+		// Si el album no existe
+		Album album = albumService.getAlbum(id);
+		if (album == null) {
+			String respuesta = "El usuario no existe";
+			return new ResponseEntity<>(respuesta, HttpStatus.PRECONDITION_FAILED);
+		}
+
+		// Guardar el album
+		Album _album = albumService.editarAlbum(album, nombre);
+
+		// Si no se ha podido guardar
+		if (_album == null) {
+			String respuesta = "La carta no ha sido guardada";
+			return new ResponseEntity<>(respuesta, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		// Si todo OK
+		return new ResponseEntity<>(_album, HttpStatus.ACCEPTED);
+	}
+	
+	
 
 }

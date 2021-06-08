@@ -20,6 +20,8 @@ public interface AlbumService {
 	
 	public Album crearAlbum (String nombre, Usuario usuario);
 	
+	public Album editarAlbum (Album album, String nombre);
+	
 	public void eliminarAlbum (Integer album_id);
 	
 	public int countAlbumsFromUser (Usuario usuario);

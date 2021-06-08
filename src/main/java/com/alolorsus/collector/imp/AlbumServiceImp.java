@@ -90,4 +90,10 @@ public class AlbumServiceImp implements AlbumService {
 		return albumDao.findByUsuario(usuario);
 	}
 
+	@Override
+	public Album editarAlbum(Album album, String nombre) {
+		album.setNombre(nombre);
+		return albumDao.save(album);
+	}
+
 }

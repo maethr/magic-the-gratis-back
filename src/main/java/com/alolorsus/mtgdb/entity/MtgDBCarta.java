@@ -34,7 +34,7 @@ public class MtgDBCarta implements Serializable {
 	private String setCode;
 
 	
-	// Getters
+	// Getters & Setters
 
 	public Integer getId() {
 		return id;

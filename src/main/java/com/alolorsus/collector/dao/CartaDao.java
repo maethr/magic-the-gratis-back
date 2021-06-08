@@ -15,6 +15,4 @@ public interface CartaDao extends JpaRepository<Carta, Integer>{
 	@Query("select c from cartas c where album = ?1")
 	public Page<Carta> findByAlbum(Album album, Pageable pagina);
 	
-	
-
 }
