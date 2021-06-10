@@ -22,10 +22,12 @@ public class MtgDBServiceImp implements MtgDBService {
 	}
 
 	@Override
-	public Page<MtgDBCarta> getByNombreGroupByOracle(String nombre, Integer pagina) {
+	public Page<MtgDBCarta> getByNombreGroupByOracle(String nombre, Integer pagina, Integer size) {
 		if (pagina == null)
 			pagina = 0;
-		Pageable pag = PageRequest.of(pagina, cartasPorBusqueda);
+		if (size == null)
+			size = cartasPorBusqueda;
+		Pageable pag = PageRequest.of(pagina, size);
 		return dao.findByNameGroupByOracle(nombre, pag);
 	}
 
@@ -46,18 +48,22 @@ public class MtgDBServiceImp implements MtgDBService {
 	}
 
 	@Override
-	public Page<MtgDBCarta> getByNombreGroupByIlustracion(String nombre, Integer pagina) {
+	public Page<MtgDBCarta> getByNombreGroupByIlustracion(String nombre, Integer pagina, Integer size) {
 		if (pagina == null)
 			pagina = 0;
-		Pageable pag = PageRequest.of(pagina, cartasPorBusqueda);
+		if (size == null)
+			size = cartasPorBusqueda;
+		Pageable pag = PageRequest.of(pagina, size);
 		return dao.findByNameGroupByIllustration(nombre, pag);
 	}
 
 	@Override
-	public Page<MtgDBCarta> getByNombreGroupById(String nombre, Integer pagina) {
+	public Page<MtgDBCarta> getByNombreGroupById(String nombre, Integer pagina, Integer size) {
 		if (pagina == null)
 			pagina = 0;
-		Pageable pag = PageRequest.of(pagina, cartasPorBusqueda);
+		if (size == null)
+			size = cartasPorBusqueda;
+		Pageable pag = PageRequest.of(pagina, size);
 		return dao.findByNameGroupById(nombre, pag);
 	}
 

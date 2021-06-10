@@ -37,10 +37,12 @@ public class AlbumServiceImp implements AlbumService {
 	}
 
 	@Override
-	public Page<Carta> getCartasFromAlbum(Album album, Integer pagina) {
+	public Page<Carta> getCartasFromAlbum(Album album, Integer pagina, Integer size) {
 		if (pagina == null)
 			pagina = 0;
-		Pageable pag = PageRequest.of(pagina, cartasPorPagina);
+		if (size == null)
+			size = cartasPorPagina;
+		Pageable pag = PageRequest.of(pagina, size);
 		return cartaDao.findByAlbum(album, pag);
 	}
 

@@ -137,7 +137,7 @@ public class AlbumController {
 	}
 
 	@GetMapping("/album/{id}/{page}")
-	public ResponseEntity<Object> getPaginaFromAlbum(@PathVariable Integer id, @PathVariable Integer page) {
+	public ResponseEntity<Object> getPaginaFromAlbum(@PathVariable Integer id, @PathVariable Integer page, @Nullable @RequestParam Integer size) {
 
 		// Si el album no existe
 		Album album = albumService.getAlbum(id);
@@ -147,7 +147,7 @@ public class AlbumController {
 		}
 
 		// Obtener la página
-		Page<Carta> paginaCartas = albumService.getCartasFromAlbum(album, page);
+		Page<Carta> paginaCartas = albumService.getCartasFromAlbum(album, page, size);
 
 		// Si la página no existe
 		if (page == null) {

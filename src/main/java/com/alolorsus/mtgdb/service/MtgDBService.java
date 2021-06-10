@@ -10,11 +10,13 @@ public interface MtgDBService {
 	
 	///// Buscador
 	
-	public Page<MtgDBCarta> getByNombreGroupByOracle (String nombre, Integer pagina);
+	public Page<MtgDBCarta> getByNombreGroupByOracle (String nombre, Integer pagina, Integer size);
 	
-	public Page<MtgDBCarta> getByNombreGroupByIlustracion (String nombre, Integer pagina);
+	public Page<MtgDBCarta> getByNombreGroupByIlustracion (String nombre, Integer pagina, Integer size);
 	
-	public Page<MtgDBCarta> getByNombreGroupById (String nombre, Integer pagina);
+	public Page<MtgDBCarta> getByNombreGroupById (String nombre, Integer pagina, Integer size);
+	
+	///// Alcance
 	
 	public Page<MtgDBCarta> getByOracleGroupByIlustracion (String scryfallOracleId, Integer pagina);
 	
