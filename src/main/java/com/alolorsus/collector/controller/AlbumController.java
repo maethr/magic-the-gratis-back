@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -179,6 +180,23 @@ public class AlbumController {
 
 		// Si todo OK
 		return new ResponseEntity<>(_carta, HttpStatus.ACCEPTED);
+	}
+	
+	@DeleteMapping("/album")
+	public ResponseEntity<Object> deleteCartaFromAlbum(@RequestParam Integer carta) {
+		
+		// Guardar la carta
+		Carta _carta = albumService.getCarta(carta);
+		if (_carta == null) {
+			String respuesta = "El usuario no existe";
+			return new ResponseEntity<>(respuesta, HttpStatus.PRECONDITION_FAILED);
+		}
+		
+		albumService.eliminarCarta(carta);
+
+		// Si todo OK
+		String respuesta = "Carta borrada";
+		return new ResponseEntity<>(respuesta, HttpStatus.OK);
 	}
 	
 	@PutMapping("/album")

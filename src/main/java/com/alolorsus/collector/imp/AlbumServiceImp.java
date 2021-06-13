@@ -98,4 +98,9 @@ public class AlbumServiceImp implements AlbumService {
 		return albumDao.save(album);
 	}
 
+	@Override
+	public Carta getCarta(Integer id) {
+		return cartaDao.findById(id).orElse(null);
+	}
+
 }

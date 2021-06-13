@@ -28,6 +28,8 @@ public interface AlbumService {
 	
 	// Cartas
 	
+	public Carta getCarta (Integer id);
+	
 	public Page<Carta> getCartasFromAlbum (Album album, Integer pagina, Integer size);
 	
 	public Carta agregarCarta (String externalId, Integer album_id);
