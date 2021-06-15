@@ -35,6 +35,8 @@ public class Usuario implements Serializable {
 	@JsonBackReference
 	private List<Album> albumes;
 	
+	private String rol;
+	
 	
 	// Getters y Setters
 
@@ -84,6 +86,14 @@ public class Usuario implements Serializable {
 
 	public void setCreateAt(Date createAt) {
 		this.createAt = createAt;
+	}
+
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
 	}
 
 	private static final long serialVersionUID = 1L;

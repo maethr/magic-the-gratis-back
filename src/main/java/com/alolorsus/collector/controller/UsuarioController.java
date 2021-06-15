@@ -100,7 +100,7 @@ public class UsuarioController {
 			return new ResponseEntity<Map<String, Object>>(this.response, HttpStatus.NOT_FOUND);
 		}
 		if (usuario == null) {
-			this.response.put("mensaje", "El usuario de ATOS ".concat(user.concat(" no se encuentra en el sistema")));
+			this.response.put("mensaje", "El usuario ".concat(user.concat(" no se encuentra en el sistema")));
 			return new ResponseEntity<Map<String, Object>>(this.response, HttpStatus.NOT_FOUND);
 		}
 		this.response.put("mensaje", "Acceso concedido");
@@ -210,15 +210,16 @@ public class UsuarioController {
 	@DeleteMapping("/usuario")
 	@ResponseStatus(HttpStatus.NO_CONTENT) // 204
 	public ResponseEntity<?> delete(@RequestParam String user) {
+		Map<String, Object> response = new HashMap<>();
 		try {
 			this.usuarioService.delete(user);
 		} catch (DataAccessException dae) {
-			this.response.put("mensaje", "Error al eliminar el usuario");
-			this.response.put("error", dae.getMessage().concat(" ").concat(dae.getMostSpecificCause().getMessage()));
-			return new ResponseEntity<Map<String, Object>>(this.response, HttpStatus.INTERNAL_SERVER_ERROR);
+			response.put("mensaje", "Error al eliminar el usuario");
+			response.put("error", dae.getMessage().concat(" ").concat(dae.getMostSpecificCause().getMessage()));
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		this.response.put("mensaje", "Usuario eliminado de la base de datos");
-		return new ResponseEntity<Map<String, Object>>(this.response, HttpStatus.OK);
+		response.put("mensaje", "Usuario eliminado de la base de datos");
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
 
 	/**************************************************************************************************************************************************/

@@ -39,6 +39,9 @@ public class UsuarioServiceImp implements UsuarioService {
 
 	@Override
 	public Usuario save(Usuario usuario) {
+		if (usuario.getRol() == null) {
+			usuario.setRol("user");
+		}
 		return usuarioDao.save(usuario);
 	}
 
