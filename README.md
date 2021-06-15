@@ -9,7 +9,7 @@ Manual de despliegue del back-end de Album Collector.
 Nos dirigimos a la carpeta en la que queramos instalar el back-end de Album Collector, y clonamos el repositorio.
 
 ````
-git install https://github.com/admorsus/AlbumCollector-Back
+git clone https://github.com/admorsus/AlbumCollector-Back
 ````
 
 
