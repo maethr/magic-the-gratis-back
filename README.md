@@ -33,3 +33,8 @@ En caso de que no se encuentre la API de validación de Java, entrar en el menú
 ### 4. Lanzar la aplicación
 
 Abriendo el menú contextual del proyecto en eclipse, lanzamos el programa como una aplicación de Spring Boot.
+
+
+
+Copyright 2021, Miguel Bautista Pérez y Alonso Viñé Barrancos
+Todos los derechos reservados
