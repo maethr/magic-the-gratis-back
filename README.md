@@ -36,5 +36,8 @@ Abriendo el menú contextual del proyecto en eclipse, lanzamos el programa como 
 
 
 
+## Copyright
+
 Copyright 2021, Miguel Bautista Pérez y Alonso Viñé Barrancos
+
 Todos los derechos reservados
