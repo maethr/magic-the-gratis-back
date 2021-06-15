@@ -4,7 +4,7 @@ Manual de despliegue del back-end de Album Collector.
 
 
 
-### Clonar el repositorio
+### 1. Clonar el repositorio
 
 Nos dirigimos a la carpeta en la que queramos instalar el back-end de Album Collector, y clonamos el repositorio.
 
@@ -14,13 +14,13 @@ git install https://github.com/admorsus/AlbumCollector-Back
 
 
 
-### Instalar las dependencias
+### 2. Instalar las dependencias
 
 Abrimos Eclipse, nos dirigimos a Eclipse Marketplace, e instalamos Spring Tools 4.
 
 
 
-### Importar repositorio en Eclipse
+### 3. Importar repositorio en Eclipse
 
 Desde el menú _Importar proyectos desde el Sistema de Archivos_, seleccionamos la ruta de AlbumCollector-Back.
 
@@ -30,6 +30,6 @@ En caso de que no se encuentre la API de validación de Java, entrar en el menú
 
 
 
-### Lanzar la aplicación
+### 4. Lanzar la aplicación
 
 Abriendo el menú contextual del proyecto en eclipse, lanzamos el programa como una aplicación de Spring Boot.
