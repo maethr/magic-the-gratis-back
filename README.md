@@ -26,7 +26,7 @@ Desde el menú _Importar proyectos desde el Sistema de Archivos_, seleccionamos 
 
 Debemos esperar a que se importen todas las dependencias y termine de compilar el proyecto.
 
-En caso de que no se encuentre la API de validación de Java, entrar en el menú de _Project Set-up_, e importar desde ahí el archivo `validation-api-2.0.1.Final` ... click [aquí](https://repo1.maven.org/maven2/javax/validation/validation-api/2.0.1.Final/validation-api-2.0.1.Final.jar) para descargar.
+En caso de que no se encuentre la API de validación de Java, entrar en el menú de _Project Set-up_, e importar desde ahí, en el _Classpath_, el archivo `validation-api-2.0.1.Final` ... click [aquí](https://repo1.maven.org/maven2/javax/validation/validation-api/2.0.1.Final/validation-api-2.0.1.Final.jar) para descargar.
 
 
 
