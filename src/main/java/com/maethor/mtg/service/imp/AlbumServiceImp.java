@@ -1,4 +1,4 @@
-package com.alolorsus.collector.imp;
+package com.maethor.mtg.service.imp;
 
 import java.util.List;
 
@@ -8,13 +8,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.alolorsus.collector.dao.AlbumDao;
-import com.alolorsus.collector.dao.CartaDao;
-import com.alolorsus.collector.entity.Album;
-import com.alolorsus.collector.entity.Carta;
-import com.alolorsus.collector.entity.Juego;
-import com.alolorsus.collector.entity.Usuario;
-import com.alolorsus.collector.service.AlbumService;
+import com.maethor.mtg.dao.AlbumDao;
+import com.maethor.mtg.dao.CartaDao;
+import com.maethor.mtg.entity.Album;
+import com.maethor.mtg.entity.Carta;
+import com.maethor.mtg.entity.Juego;
+import com.maethor.mtg.entity.Usuario;
+import com.maethor.mtg.service.AlbumService;
 
 @Service
 public class AlbumServiceImp implements AlbumService {

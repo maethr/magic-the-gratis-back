@@ -1,4 +1,4 @@
-package com.alolorsus.collector.controller;
+package com.maethor.mtg.controller;
 
 import java.util.List;
 
@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alolorsus.collector.entity.Album;
-import com.alolorsus.collector.entity.Carta;
-import com.alolorsus.collector.entity.Usuario;
-import com.alolorsus.collector.service.AlbumService;
-import com.alolorsus.collector.service.UsuarioService;
+import com.maethor.mtg.entity.Album;
+import com.maethor.mtg.entity.Carta;
+import com.maethor.mtg.entity.Usuario;
+import com.maethor.mtg.service.AlbumService;
+import com.maethor.mtg.service.UsuarioService;
 
 @RestController
 @RequestMapping("/collector")

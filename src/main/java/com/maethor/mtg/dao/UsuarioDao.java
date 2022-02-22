@@ -1,4 +1,4 @@
-package com.alolorsus.collector.dao;
+package com.maethor.mtg.dao;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.alolorsus.collector.entity.Usuario;
+import com.maethor.mtg.entity.Usuario;
 
 @Repository
 public interface UsuarioDao extends CrudRepository<Usuario, String>{

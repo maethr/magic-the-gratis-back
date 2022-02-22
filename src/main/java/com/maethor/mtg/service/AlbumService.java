@@ -1,12 +1,12 @@
-package com.alolorsus.collector.service;
+package com.maethor.mtg.service;
 
 import java.util.List;
 
 import org.springframework.data.domain.Page;
 
-import com.alolorsus.collector.entity.Album;
-import com.alolorsus.collector.entity.Carta;
-import com.alolorsus.collector.entity.Usuario;
+import com.maethor.mtg.entity.Album;
+import com.maethor.mtg.entity.Carta;
+import com.maethor.mtg.entity.Usuario;
 
 public interface AlbumService {
 	

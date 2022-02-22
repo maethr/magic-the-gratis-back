@@ -1,4 +1,4 @@
-package com.alolorsus.collector.controller;
+package com.maethor.mtg.controller;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -24,9 +24,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alolorsus.collector.entity.Usuario;
-import com.alolorsus.collector.service.UsuarioService;
-import com.alolorsus.util.JsonMap;
+import com.maethor.mtg.entity.Usuario;
+import com.maethor.mtg.service.UsuarioService;
+import com.maethor.mtg.util.JsonMap;
 
 @RestController
 @RequestMapping("/collector")

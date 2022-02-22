@@ -1,4 +1,4 @@
-package com.alolorsus.collector.entity;
+package com.maethor.mtg.entity;
 
 public enum Juego {
 

@@ -1,4 +1,4 @@
-package com.alolorsus.collector.dao;
+package com.maethor.mtg.dao;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.alolorsus.collector.entity.Album;
-import com.alolorsus.collector.entity.Usuario;
+import com.maethor.mtg.entity.Album;
+import com.maethor.mtg.entity.Usuario;
 
 @Repository
 public interface AlbumDao extends JpaRepository<Album, Integer>{

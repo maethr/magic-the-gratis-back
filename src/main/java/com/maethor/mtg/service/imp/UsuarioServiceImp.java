@@ -1,4 +1,4 @@
-package com.alolorsus.collector.imp;
+package com.maethor.mtg.service.imp;
 
 import java.util.List;
 
@@ -7,9 +7,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.alolorsus.collector.dao.UsuarioDao;
-import com.alolorsus.collector.entity.Usuario;
-import com.alolorsus.collector.service.UsuarioService;
+import com.maethor.mtg.dao.UsuarioDao;
+import com.maethor.mtg.entity.Usuario;
+import com.maethor.mtg.service.UsuarioService;
 
 @Service
 public class UsuarioServiceImp implements UsuarioService {

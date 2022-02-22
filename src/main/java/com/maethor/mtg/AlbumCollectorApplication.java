@@ -1,4 +1,4 @@
-package com.alolorsus.collector;
+package com.maethor.mtg;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -11,9 +11,9 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-@EnableAutoConfiguration(exclude = { DataSourceAutoConfiguration.class })
+@EnableAutoConfiguration
 @Configuration
-@ComponentScan(basePackages = { "com.alolorsus.mtgdb", "com.alolorsus.collector" })
+//@ComponentScan(basePackages = { "com.alolorsus.mtgdb", "com.maethor.mtg.userdata" })
 public class AlbumCollectorApplication {
 
 	public static void main(String[] args) {

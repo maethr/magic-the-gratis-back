@@ -1,4 +1,4 @@
-package com.alolorsus.util;
+package com.maethor.mtg.util;
 
 import java.util.Map;
 

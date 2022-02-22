@@ -1,11 +1,11 @@
-package com.alolorsus.collector.service;
+package com.maethor.mtg.service;
 
 import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.alolorsus.collector.entity.Usuario;
+import com.maethor.mtg.entity.Usuario;
 
 public interface UsuarioService {
 	

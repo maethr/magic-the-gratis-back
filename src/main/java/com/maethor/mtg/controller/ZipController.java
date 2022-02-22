@@ -1,4 +1,4 @@
-package com.alolorsus.collector.controller;
+package com.maethor.mtg.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
-import com.alolorsus.collector.entity.Album;
-import com.alolorsus.collector.entity.Carta;
-import com.alolorsus.collector.service.AlbumService;
-import com.alolorsus.util.ScryfallService;
+import com.maethor.mtg.entity.Album;
+import com.maethor.mtg.entity.Carta;
+import com.maethor.mtg.service.AlbumService;
+import com.maethor.mtg.util.ScryfallService;
 
 @RestController
 @RequestMapping("/collector")
