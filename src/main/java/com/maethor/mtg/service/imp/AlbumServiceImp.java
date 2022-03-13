@@ -1,5 +1,6 @@
 package com.maethor.mtg.service.imp;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,6 +102,18 @@ public class AlbumServiceImp implements AlbumService {
 	@Override
 	public Carta getCarta(Integer id) {
 		return cartaDao.findById(id).orElse(null);
+	}
+
+	@Override
+	public List<String> getCartasAleatorias(int numero) {
+		List<String> cartas = new LinkedList<String>();
+		for (int i = 0; i < numero; i++) {
+			long totalCartas = cartaDao.count();
+			int indexCartaRandom = (int) Math.floor(Math.random()*totalCartas + 1);
+			Carta cartaSeleccionada = cartaDao.findById(indexCartaRandom).orElseThrow();
+			cartas.add(cartaSeleccionada.getScryfallId());
+		}
+		return cartas;
 	}
 
 }

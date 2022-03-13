@@ -35,5 +35,7 @@ public interface AlbumService {
 	public Carta agregarCarta (String externalId, Integer album_id);
 	
 	public void eliminarCarta (Integer carta_id);
+	
+	public List<String> getCartasAleatorias (int numero); 
 
 }

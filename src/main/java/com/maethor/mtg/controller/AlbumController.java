@@ -23,6 +23,7 @@ import com.maethor.mtg.entity.Carta;
 import com.maethor.mtg.entity.Usuario;
 import com.maethor.mtg.service.AlbumService;
 import com.maethor.mtg.service.UsuarioService;
+import com.maethor.mtg.util.JsonMap;
 
 @RestController
 @RequestMapping("/collector")
@@ -35,6 +36,13 @@ public class AlbumController {
 	@Autowired
 	private UsuarioService usuarioService;
 
+	@PostMapping("/test-bed")
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<Object[]> testPost(@RequestParam @Nullable Object[] demo) {
+		
+		return new ResponseEntity<>(demo, HttpStatus.OK);
+	}
+	
 	@GetMapping("/album/{id}")
 	public ResponseEntity<Object> getAlbum(@PathVariable Integer id) {
 
@@ -222,6 +230,8 @@ public class AlbumController {
 		return new ResponseEntity<>(_album, HttpStatus.ACCEPTED);
 	}
 	
-	
-
+	@GetMapping("welcome/{q}")
+	public ResponseEntity<List<String>> getWelcomePage (@PathVariable("q") Integer cantidad) {
+		return new ResponseEntity<>(albumService.getCartasAleatorias(cantidad), HttpStatus.OK);
+	}
 }
