@@ -107,11 +107,14 @@ public class AlbumServiceImp implements AlbumService {
 	@Override
 	public List<String> getCartasAleatorias(int numero) {
 		List<String> cartas = new LinkedList<String>();
-		for (int i = 0; i < numero; i++) {
+		for (int i = 0; i < numero;) {
 			long totalCartas = cartaDao.count();
 			int indexCartaRandom = (int) Math.floor(Math.random()*totalCartas + 1);
 			Carta cartaSeleccionada = cartaDao.findById(indexCartaRandom).orElseThrow();
-			cartas.add(cartaSeleccionada.getScryfallId());
+			if (! cartas.contains(cartaSeleccionada.getScryfallId())) {
+				cartas.add(cartaSeleccionada.getScryfallId());
+				i++;
+			}
 		}
 		return cartas;
 	}
