@@ -111,7 +111,8 @@ public class AlbumServiceImp implements AlbumService {
 			long totalCartas = cartaDao.count();
 			int indexCartaRandom = (int) Math.floor(Math.random()*totalCartas + 1);
 			Carta cartaSeleccionada = cartaDao.findById(indexCartaRandom).orElseThrow();
-			if (! cartas.contains(cartaSeleccionada.getScryfallId())) {
+			if (! cartas.contains(cartaSeleccionada.getScryfallId()) || totalCartas < numero) {
+				
 				cartas.add(cartaSeleccionada.getScryfallId());
 				i++;
 			}
