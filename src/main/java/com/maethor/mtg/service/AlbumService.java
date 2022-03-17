@@ -26,6 +26,8 @@ public interface AlbumService {
 	
 	public int countAlbumsFromUser (Usuario usuario);
 	
+	public int countCartasAlbum (int id);
+	
 	// Cartas
 	
 	public Carta getCarta (Integer id);

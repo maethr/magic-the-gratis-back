@@ -234,4 +234,9 @@ public class AlbumController {
 	public ResponseEntity<List<String>> getWelcomePage (@PathVariable("q") Integer cantidad) {
 		return new ResponseEntity<>(albumService.getCartasAleatorias(cantidad), HttpStatus.OK);
 	}
+	
+	@GetMapping("album/{id}/contar-cartas")
+	public ResponseEntity<Object>countCartasAlbum (@PathVariable("id") int id) {
+		return new ResponseEntity<>(albumService.countCartasAlbum(id), HttpStatus.OK);
+	}
 }

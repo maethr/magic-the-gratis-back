@@ -82,10 +82,16 @@ public class AlbumServiceImp implements AlbumService {
 	public void eliminarAlbum(Integer album_id) {
 		albumDao.deleteById(album_id);
 	}
+	
 
 	@Override
 	public int countAlbumsFromUser(Usuario usuario) {
 		return albumDao.countAlbumsByUsuario(usuario);
+	}
+	
+	@Override
+	public int countCartasAlbum(int id) {
+		return cartaDao.countCartasAlbum(id);
 	}
 
 	@Override
