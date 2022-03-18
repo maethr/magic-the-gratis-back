@@ -70,7 +70,7 @@ public class AlbumServiceImp implements AlbumService {
 
 	@Override
 	public Album getAlbum(Integer album_id) {
-		return albumDao.findById(album_id).orElse(null);
+		return albumDao.findById(album_id).orElseThrow();
 	}
 
 	@Override
@@ -79,8 +79,13 @@ public class AlbumServiceImp implements AlbumService {
 	}
 
 	@Override
-	public void eliminarAlbum(Integer album_id) {
-		albumDao.deleteById(album_id);
+	public void eliminarAlbum(Album album) {
+		
+		List<Carta> cartasToRemove = cartaDao.findAllByAlbum(album);
+		for (Carta carta: cartasToRemove) {
+			cartaDao.delete(carta);
+		}
+		albumDao.delete(album);
 	}
 	
 
@@ -115,8 +120,11 @@ public class AlbumServiceImp implements AlbumService {
 		List<String> cartas = new LinkedList<String>();
 		for (int i = 0; i < numero;) {
 			long totalCartas = cartaDao.count();
-			int indexCartaRandom = (int) Math.floor(Math.random()*totalCartas + 1);
-			Carta cartaSeleccionada = cartaDao.findById(indexCartaRandom).orElseThrow();
+			Carta cartaSeleccionada = null;
+			while(cartaSeleccionada == null) {
+				int indexCartaRandom = (int) Math.floor(Math.random()*totalCartas + 1);
+				cartaSeleccionada = cartaDao.findById(indexCartaRandom).orElse(null);
+			}
 			if (! cartas.contains(cartaSeleccionada.getScryfallId()) || totalCartas < numero) {
 				
 				cartas.add(cartaSeleccionada.getScryfallId());

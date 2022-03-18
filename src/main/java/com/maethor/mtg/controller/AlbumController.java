@@ -23,7 +23,6 @@ import com.maethor.mtg.entity.Carta;
 import com.maethor.mtg.entity.Usuario;
 import com.maethor.mtg.service.AlbumService;
 import com.maethor.mtg.service.UsuarioService;
-import com.maethor.mtg.util.JsonMap;
 
 @RestController
 @RequestMapping("/collector")
@@ -190,13 +189,13 @@ public class AlbumController {
 		return new ResponseEntity<>(_carta, HttpStatus.ACCEPTED);
 	}
 	
-	@DeleteMapping("/album")
+	@DeleteMapping("/carta")
 	public ResponseEntity<Object> deleteCartaFromAlbum(@RequestParam Integer carta) {
 		
-		// Guardar la carta
+		// Eliminar una carta de un album
 		Carta _carta = albumService.getCarta(carta);
 		if (_carta == null) {
-			String respuesta = "El usuario no existe";
+			String respuesta = "La carta no existe";
 			return new ResponseEntity<>(respuesta, HttpStatus.PRECONDITION_FAILED);
 		}
 		
@@ -205,6 +204,23 @@ public class AlbumController {
 		// Si todo OK
 		String respuesta = "Carta borrada";
 		return new ResponseEntity<>(respuesta, HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/album/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT) // 204
+	public ResponseEntity<Object> deleteAlbum(@PathVariable(value = "id") Integer album_id) {
+		// Eliminar el album
+				Album _album = albumService.getAlbum(album_id);
+				if (_album == null) {
+					String respuesta = "El album no existe";
+					return new ResponseEntity<>(respuesta, HttpStatus.PRECONDITION_FAILED);
+				}
+				
+				albumService.eliminarAlbum(_album);
+
+				// Si todo OK
+				String respuesta = "Album borrado";
+				return new ResponseEntity<>(respuesta, HttpStatus.OK);
 	}
 	
 	@PutMapping("/album")
