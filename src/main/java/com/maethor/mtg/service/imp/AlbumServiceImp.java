@@ -20,7 +20,7 @@ import com.maethor.mtg.service.AlbumService;
 @Service
 public class AlbumServiceImp implements AlbumService {
 
-	private final int albumsPorPagina = 9;
+	private final int albumsPorPagina = 16;
 	private final int cartasPorPagina = 9;
 
 	@Autowired
