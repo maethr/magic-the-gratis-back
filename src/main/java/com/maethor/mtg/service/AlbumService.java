@@ -32,7 +32,7 @@ public interface AlbumService {
 	
 	public Page<Carta> getCartasFromAlbum (Album album, Integer pagina, Integer size);
 	
-	public Carta agregarCarta (String externalId, Integer album_id);
+	public Carta agregarCarta (String externalId, Integer albumId);
 	
 	public void eliminarCarta (Integer carta_id);
 	

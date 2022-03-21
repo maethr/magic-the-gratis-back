@@ -1,6 +1,8 @@
 package com.maethor.mtg.entity;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +14,7 @@ import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity(name = "cartas")
 public class Carta implements Serializable {
@@ -22,13 +25,12 @@ public class Carta implements Serializable {
 	
 	@NotEmpty
 	@Column(name = "scryfallId")
-	private String scryfallId;
+	private String scryfall_id;
 	
 	@ManyToOne
 	@JsonManagedReference
 	@JsonIdentityReference(alwaysAsId = true)
 	private Album album;
-	
 	
 	// Getters y Setters
 	
@@ -42,12 +44,13 @@ public class Carta implements Serializable {
 		this.id = id;
 	}
 
+	@JsonProperty(value = "scryfall_id")
 	public String getScryfallId() {
-		return scryfallId;
+		return scryfall_id;
 	}
 
 	public void setScryfallId(String scryfallId) {
-		this.scryfallId = scryfallId;
+		this.scryfall_id = scryfallId;
 	}
 
 	public Album getAlbum() {
@@ -57,5 +60,4 @@ public class Carta implements Serializable {
 	public void setAlbum(Album album) {
 		this.album = album;
 	}
-
 }

@@ -57,10 +57,10 @@ public class AlbumServiceImp implements AlbumService {
 	}
 
 	@Override
-	public Carta agregarCarta(String scryfallId, Integer album_id) {
+	public Carta agregarCarta(String scryfallId, Integer albumId) {
 		Carta carta = new Carta();
 		carta.setScryfallId(scryfallId);
-		Album album = albumDao.findById(album_id).orElse(null);
+		Album album = albumDao.findById(albumId).orElse(null);
 		if (album != null) {
 			carta.setAlbum(album);
 			System.out.println("casi");
@@ -107,14 +107,16 @@ public class AlbumServiceImp implements AlbumService {
 	@Override
 	public List<String> getCartasAleatorias(int numero) {
 		List<String> cartas = new LinkedList<String>();
+		long totalCartas = cartaDao.count();
+
 		for (int i = 0; i < numero;) {
-			long totalCartas = cartaDao.count();
-			int indexCartaRandom = (int) Math.floor(Math.random()*totalCartas + 1);
-			Carta cartaSeleccionada = cartaDao.findById(indexCartaRandom).orElseThrow();
-			if (! cartas.contains(cartaSeleccionada.getScryfallId()) || totalCartas < numero) {
-				
-				cartas.add(cartaSeleccionada.getScryfallId());
-				i++;
+			int indexCartaRandom = (int) Math.floor(Math.random() * totalCartas + 1);
+			Carta cartaSeleccionada = cartaDao.findById(indexCartaRandom).orElse(null);
+			if (cartaSeleccionada != null) {
+				if (!cartas.contains(cartaSeleccionada.getScryfallId()) || totalCartas < numero) {
+					cartas.add(cartaSeleccionada.getScryfallId());
+					i++;
+				}
 			}
 		}
 		return cartas;
