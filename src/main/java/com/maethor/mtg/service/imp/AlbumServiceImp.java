@@ -20,7 +20,7 @@ import com.maethor.mtg.service.AlbumService;
 @Service
 public class AlbumServiceImp implements AlbumService {
 
-	private final int albumsPorPagina = 9;
+	private final int albumsPorPagina = 16;
 	private final int cartasPorPagina = 9;
 
 	@Autowired
@@ -70,7 +70,7 @@ public class AlbumServiceImp implements AlbumService {
 
 	@Override
 	public Album getAlbum(Integer album_id) {
-		return albumDao.findById(album_id).orElse(null);
+		return albumDao.findById(album_id).orElseThrow();
 	}
 
 	@Override
@@ -79,13 +79,24 @@ public class AlbumServiceImp implements AlbumService {
 	}
 
 	@Override
-	public void eliminarAlbum(Integer album_id) {
-		albumDao.deleteById(album_id);
+	public void eliminarAlbum(Album album) {
+
+		List<Carta> cartasToRemove = cartaDao.findAllByAlbum(album);
+		for (Carta carta: cartasToRemove) {
+			cartaDao.delete(carta);
+		}
+		albumDao.delete(album);
 	}
+
 
 	@Override
 	public int countAlbumsFromUser(Usuario usuario) {
 		return albumDao.countAlbumsByUsuario(usuario);
+	}
+
+	@Override
+	public int countCartasAlbum(int id) {
+		return cartaDao.countCartasAlbum(id);
 	}
 
 	@Override

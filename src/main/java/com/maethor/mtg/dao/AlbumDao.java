@@ -26,4 +26,6 @@ public interface AlbumDao extends JpaRepository<Album, Integer>{
 	@Query("select count(a) from albums a where usuario like ?1")
 	public Integer countAlbumsByUsuario(Usuario usuario);
 	
+
+	
 }

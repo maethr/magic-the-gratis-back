@@ -22,9 +22,11 @@ public interface AlbumService {
 	
 	public Album editarAlbum (Album album, String nombre);
 	
-	public void eliminarAlbum (Integer album_id);
+	public void eliminarAlbum (Album album);
 	
 	public int countAlbumsFromUser (Usuario usuario);
+	
+	public int countCartasAlbum (int id);
 	
 	// Cartas
 	
