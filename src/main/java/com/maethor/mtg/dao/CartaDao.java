@@ -21,6 +21,8 @@ public interface CartaDao extends JpaRepository<Carta, Integer>{
 	public Page<Carta> findByAlbum(Album album, Pageable pagina);
 	
 	@Query("select count(c) from cartas c where album_id = ?1")
-	public int countCartasAlbum(int id);
+	public Integer countCartasAlbum(Integer id);
 	
+	@Query("select c from cartas c where album_id = ?1 and scryfall_id = ?2")
+	public List<Carta> findByAlbumAndScryfallId(Integer albumId, String scryfallId);
 }

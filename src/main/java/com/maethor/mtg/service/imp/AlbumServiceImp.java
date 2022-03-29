@@ -38,6 +38,11 @@ public class AlbumServiceImp implements AlbumService {
 	}
 
 	@Override
+	public List<Carta> getAllCartasFromAlbum(Album album) {
+		return cartaDao.findAllByAlbum(album);
+	}
+	
+	@Override
 	public Page<Carta> getCartasFromAlbum(Album album, Integer pagina, Integer size) {
 		if (pagina == null)
 			pagina = 0;
@@ -46,7 +51,7 @@ public class AlbumServiceImp implements AlbumService {
 		Pageable pag = PageRequest.of(pagina, size);
 		return cartaDao.findByAlbum(album, pag);
 	}
-
+	
 	@Override
 	public Album crearAlbum(String nombre, Usuario usuario) {
 		Album album = new Album();
@@ -57,13 +62,33 @@ public class AlbumServiceImp implements AlbumService {
 	}
 
 	@Override
-	public Carta agregarCarta(String scryfallId, Integer albumId) {
+	public Carta agregarCarta(String scryfallId, Integer albumId, Integer amount) {
+		List<Carta> cartasRepetidas = cartaDao.findByAlbumAndScryfallId(albumId, scryfallId);
+		// Coger lista de cartas repetidas
+		if (cartasRepetidas.size() > 0) {
+			Carta carta = cartasRepetidas.get(0);
+			carta.setAmount(carta.getAmount() + amount);
+			// Si hay repetidas, sumamos la cantidad actual a la primera repetida encontrada
+			
+			for(int i = 1; i < cartasRepetidas.size(); i++) {
+				Carta c = cartasRepetidas.get(i);
+				carta.setAmount(carta.getAmount() + c.getAmount());
+				cartaDao.delete(c);
+				// Si está más de una vez repetida, borramos todas las demás apariciones,
+				// sumando sus cantidades a la primera aparición, y dejamos solo la primera
+			}
+			return cartaDao.save(carta);
+			// Guardamos la carta encontrada con su nueva cantidad
+		}
+		
 		Carta carta = new Carta();
 		carta.setScryfallId(scryfallId);
-		Album album = albumDao.findById(albumId).orElse(null);
+		carta.setAmount(amount);
+		// Si no está repetida la carta, la creamos
+		
+		Album album = albumDao.findById(albumId).orElseThrow();
 		if (album != null) {
 			carta.setAlbum(album);
-			System.out.println("casi");
 		}
 		return cartaDao.save(carta);
 	}
@@ -105,8 +130,10 @@ public class AlbumServiceImp implements AlbumService {
 	}
 
 	@Override
-	public Album editarAlbum(Album album, String nombre) {
+	public Album editarAlbum(Integer id, String nombre, Integer portada) {
+		Album album = albumDao.findById(id).orElseThrow();
 		album.setNombre(nombre);
+		album.setPortada(cartaDao.findById(portada).orElseThrow());
 		return albumDao.save(album);
 	}
 
@@ -131,6 +158,12 @@ public class AlbumServiceImp implements AlbumService {
 			}
 		}
 		return cartas;
+	}
+
+	@Override
+	public Carta getPortada(Integer album_id) {
+		Album album = getAlbum(album_id);
+		return album.getPortada();
 	}
 
 }

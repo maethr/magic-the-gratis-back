@@ -147,9 +147,9 @@ public class AlbumController {
 	@GetMapping("/album/{id}/{page}")
 	public ResponseEntity<Object> getPaginaFromAlbum(@PathVariable Integer id, @PathVariable Integer page,
 			@Nullable @RequestParam Integer size) {
-
-		// Si el album no existe
+		
 		Album album = albumService.getAlbum(id);
+		// Si el album no existe
 		if (album == null) {
 			String respuesta = "El album no existe";
 			return new ResponseEntity<>(respuesta, HttpStatus.PRECONDITION_FAILED);
@@ -166,6 +166,24 @@ public class AlbumController {
 
 		return new ResponseEntity<>(paginaCartas, HttpStatus.OK);
 	}
+	
+	@GetMapping("/album/{id}/all")
+	public ResponseEntity<Object> getAllCartasFromAlbum(@PathVariable Integer id) {
+		Album album = albumService.getAlbum(id);
+		// Si el album no existe
+		if (album == null) {
+			String respuesta = "El album no existe";
+			return new ResponseEntity<>(respuesta, HttpStatus.PRECONDITION_FAILED);
+		}
+		List<Carta> cartas = albumService.getAllCartasFromAlbum(album);
+		// Si no hay cartas
+		if (cartas == null) {
+			String respuesta = "El album seleccionado no posee cartas";
+			return new ResponseEntity<>(respuesta, HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(cartas, HttpStatus.OK);
+
+	}
 
 	@PutMapping("/album/{id}")
 	public ResponseEntity<Object> addCartaToAlbum(@RequestParam String carta, @PathVariable("id") Integer albumId,
@@ -179,14 +197,10 @@ public class AlbumController {
 		}
 
 		// Guardar la carta
-		Carta _carta = albumService.agregarCarta(carta, albumId);
-
 		if (amount == null) {
 			amount = 1;
 		}
-		for (int i = 1; i < amount; i++) {
-			_carta = albumService.agregarCarta(carta, albumId);
-		}
+		Carta _carta = albumService.agregarCarta(carta, albumId, amount);
 
 
 		// Si no se ha podido guardar
@@ -234,17 +248,17 @@ public class AlbumController {
 	}
 
 	@PutMapping("/album")
-	public ResponseEntity<Object> setNameToAlbum(@RequestParam Integer id, @RequestParam String nombre) {
+	public ResponseEntity<Object> editarAlbum(@RequestParam Integer id, @RequestParam String nombre, @RequestParam Integer portada) {
 
 		// Si el album no existe
-		Album album = albumService.getAlbum(id);
-		if (album == null) {
-			String respuesta = "El usuario no existe";
+		Album _album = albumService.getAlbum(id);
+		if (_album == null) {
+			String respuesta = "El album no existe";
 			return new ResponseEntity<>(respuesta, HttpStatus.PRECONDITION_FAILED);
 		}
 
 		// Guardar el album
-		Album _album = albumService.editarAlbum(album, nombre);
+		_album = albumService.editarAlbum(id, nombre, portada);
 
 		// Si no se ha podido guardar
 		if (_album == null) {
@@ -262,7 +276,11 @@ public class AlbumController {
 	}
 
 	@GetMapping("album/{id}/contar-cartas")
-	public ResponseEntity<Object>countCartasAlbum (@PathVariable("id") int id) {
+	public ResponseEntity<Object> countCartasAlbum (@PathVariable("id") int id) {
 		return new ResponseEntity<>(albumService.countCartasAlbum(id), HttpStatus.OK);
+	}
+	
+	public ResponseEntity<Object> getPortadaAlbum (@PathVariable("id") Integer album_id) {
+		return new ResponseEntity<Object>(albumService.getPortada(album_id), HttpStatus.OK);
 	}
 }

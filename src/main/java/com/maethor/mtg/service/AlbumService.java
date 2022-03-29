@@ -20,7 +20,7 @@ public interface AlbumService {
 	
 	public Album crearAlbum (String nombre, Usuario usuario);
 	
-	public Album editarAlbum (Album album, String nombre);
+	public Album editarAlbum (Integer id, String nombre, Integer portada);
 	
 	public void eliminarAlbum (Album album);
 	
@@ -30,11 +30,15 @@ public interface AlbumService {
 	
 	// Cartas
 	
+	public Carta getPortada (Integer id);
+	
 	public Carta getCarta (Integer id);
+	
+	public List<Carta> getAllCartasFromAlbum (Album album);
 	
 	public Page<Carta> getCartasFromAlbum (Album album, Integer pagina, Integer size);
 	
-	public Carta agregarCarta (String externalId, Integer albumId);
+	public Carta agregarCarta (String externalId, Integer albumId, Integer amount);
 	
 	public void eliminarCarta (Integer carta_id);
 	

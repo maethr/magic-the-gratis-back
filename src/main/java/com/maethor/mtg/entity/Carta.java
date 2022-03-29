@@ -22,18 +22,20 @@ public class Carta implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@NotEmpty
 	@Column(name = "scryfallId")
 	private String scryfall_id;
-	
+
 	@ManyToOne
 	@JsonManagedReference
 	@JsonIdentityReference(alwaysAsId = true)
 	private Album album;
-	
+
+	private Integer amount;
+
 	// Getters y Setters
-	
+
 	private static final long serialVersionUID = 1L;
 
 	public Integer getId() {
@@ -42,6 +44,17 @@ public class Carta implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getAmount() {
+		if (amount == null) {
+			return 1;
+		}
+		return amount;
+	}
+
+	public void setAmount(Integer amount) {
+		this.amount = amount;
 	}
 
 	@JsonProperty(value = "scryfall_id")

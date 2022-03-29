@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -39,6 +40,9 @@ public class Album implements Serializable {
 	@ManyToOne
 	@JsonManagedReference
 	private Usuario usuario;
+	
+	@OneToOne
+	private Carta portada;
 
 	// Getters y Setters
 
@@ -76,6 +80,14 @@ public class Album implements Serializable {
 
 	public List<Carta> getCartas() {
 		return cartas;
+	}
+	
+	public Carta getPortada() {
+		return portada;
+	}
+
+	public void setPortada(Carta portada) {
+		this.portada = portada;
 	}
 
 	public static long getSerialversionuid() {
