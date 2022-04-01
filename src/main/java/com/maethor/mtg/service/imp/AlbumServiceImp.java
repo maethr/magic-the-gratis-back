@@ -130,10 +130,16 @@ public class AlbumServiceImp implements AlbumService {
 	}
 
 	@Override
-	public Album editarAlbum(Integer id, String nombre, Integer portada) {
+	public Album editarAlbum(Integer id, String nombre, Integer portada_id) {
 		Album album = albumDao.findById(id).orElseThrow();
 		album.setNombre(nombre);
-		album.setPortada(cartaDao.findById(portada).orElseThrow());
+		Carta portada;
+		if (portada_id == null) {
+			portada = null;
+		} else {
+			portada = cartaDao.findById(portada_id).orElse(null);
+		}
+		album.setPortada(portada);
 		return albumDao.save(album);
 	}
 
