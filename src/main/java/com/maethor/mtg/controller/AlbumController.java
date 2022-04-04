@@ -252,7 +252,7 @@ public class AlbumController {
 	}
 
 	@PutMapping("/album")
-	public ResponseEntity<Object> editarAlbum(@RequestParam Integer id, @RequestParam String nombre, @RequestParam Integer portada) {
+	public ResponseEntity<Object> editarAlbum(@RequestParam Integer id, @RequestParam String nombre, @RequestParam @Nullable String portada) {
 
 		// Si el album no existe
 		Album _album = albumService.getAlbum(id);
@@ -262,7 +262,13 @@ public class AlbumController {
 		}
 
 		// Guardar el album
-		_album = albumService.editarAlbum(id, nombre, portada);
+		Integer portadaId;
+		if(portada.equals("null")) {
+			portadaId = null;
+		} else {
+			portadaId = Integer.valueOf(portada);
+		}
+		_album = albumService.editarAlbum(id, nombre, portadaId);
 
 		// Si no se ha podido guardar
 		if (_album == null) {
