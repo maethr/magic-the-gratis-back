@@ -1,8 +1,10 @@
 package com.maethor.mtg.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -43,6 +45,8 @@ public class Album implements Serializable {
 	
 	@OneToOne
 	private Carta portada;
+	
+	private String colores;
 
 	// Getters y Setters
 
@@ -88,6 +92,17 @@ public class Album implements Serializable {
 
 	public void setPortada(Carta portada) {
 		this.portada = portada;
+	}
+
+	public String getColores() {
+		if (colores == null) {
+			return "";
+		}
+		return colores;
+	}
+
+	public void setColores(String colores) {
+		this.colores = colores;
 	}
 
 	public static long getSerialversionuid() {

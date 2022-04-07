@@ -130,7 +130,7 @@ public class AlbumServiceImp implements AlbumService {
 	}
 
 	@Override
-	public Album editarAlbum(Integer id, String nombre, Integer portada_id) {
+	public Album editarAlbum(Integer id, String nombre, Integer portada_id, String colores) {
 		Album album = albumDao.findById(id).orElseThrow();
 		album.setNombre(nombre);
 		Carta portada;
@@ -140,6 +140,7 @@ public class AlbumServiceImp implements AlbumService {
 			portada = cartaDao.findById(portada_id).orElse(null);
 		}
 		album.setPortada(portada);
+		album.setColores(colores);
 		return albumDao.save(album);
 	}
 

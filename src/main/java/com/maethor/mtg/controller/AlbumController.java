@@ -1,5 +1,7 @@
 package com.maethor.mtg.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +15,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +27,7 @@ import com.maethor.mtg.entity.Carta;
 import com.maethor.mtg.entity.Usuario;
 import com.maethor.mtg.service.AlbumService;
 import com.maethor.mtg.service.UsuarioService;
+import com.maethor.mtg.util.JsonMap;
 
 @RestController
 @RequestMapping("/collector")
@@ -247,6 +252,17 @@ public class AlbumController {
 				return new ResponseEntity<>(respuesta, HttpStatus.OK);
 	}
 
+	@PutMapping("/editar-album")
+	public ResponseEntity<Object> _editarAlbum(@RequestParam Integer id, @RequestBody JsonMap album) {
+		System.out.println(album);
+		String nombre = album.str("nombre");
+		Integer portada_id = (Integer) album.get("portada");
+
+		String colores = album.str("colores");
+		return new ResponseEntity<>(albumService.editarAlbum(id, nombre, portada_id, colores), HttpStatus.ACCEPTED);
+	}
+	
+	
 	@PutMapping("/album")
 	public ResponseEntity<Object> editarAlbum(@RequestParam Integer id, @RequestParam String nombre, @RequestParam @Nullable String portada) {
 
@@ -264,7 +280,7 @@ public class AlbumController {
 		} else {
 			portadaId = Integer.valueOf(portada);
 		}
-		_album = albumService.editarAlbum(id, nombre, portadaId);
+		_album = albumService.editarAlbum(id, nombre, portadaId, null);
 
 		// Si no se ha podido guardar
 		if (_album == null) {
