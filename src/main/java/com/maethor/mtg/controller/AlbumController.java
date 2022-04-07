@@ -218,21 +218,25 @@ public class AlbumController {
 		return new ResponseEntity<>(_carta, HttpStatus.ACCEPTED);
 	}
 
-	@DeleteMapping("/carta")
-	public ResponseEntity<Object> deleteCartaFromAlbum(@RequestParam Integer carta) {
+	@DeleteMapping("/carta/{id}")
+	public ResponseEntity<Object> deleteCartaFromAlbum(@PathVariable("id") String carta) {
+		
+		System.out.println(carta);
+		
+        int id_carta = Integer.valueOf(carta);
 
 		// Eliminar una carta de un album
-		Carta _carta = albumService.getCarta(carta);
+		Carta _carta = albumService.getCarta(id_carta);
 		if (_carta == null) {
 			String respuesta = "La carta no existe";
 			return new ResponseEntity<>(respuesta, HttpStatus.PRECONDITION_FAILED);
 		}
 
-		albumService.eliminarCarta(carta);
+		albumService.eliminarCarta(id_carta);
 
 		// Si todo OK
 		String respuesta = "Carta borrada";
-		return new ResponseEntity<>(respuesta, HttpStatus.OK);
+		return null;
 	}
 
 	@DeleteMapping("/album/{id}")
