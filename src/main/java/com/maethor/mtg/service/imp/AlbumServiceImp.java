@@ -121,7 +121,14 @@ public class AlbumServiceImp implements AlbumService {
 
 	@Override
 	public int countCartasAlbum(int id) {
-		return cartaDao.countCartasAlbum(id);
+		Album album = albumDao.findById(id).orElseThrow();
+		List<Carta> cartasAlbum = cartaDao.findAllByAlbum(album);
+		int numCartas = 0;
+		for (Carta carta : cartasAlbum) {
+			numCartas += carta.getAmount();
+		}
+		return numCartas;
+				
 	}
 
 	@Override
