@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import com.maethor.mtg.dao.AlbumDao;
 import com.maethor.mtg.dao.CartaDao;
@@ -14,6 +15,7 @@ import com.maethor.mtg.entity.Album;
 import com.maethor.mtg.entity.Carta;
 import com.maethor.mtg.service.CartasService;
 
+@Service
 public class CartasServiceImp implements CartasService {
 	 
 	private final int cartasPorPagina = 9;
