@@ -173,7 +173,7 @@ public class AlbumController {
 		return new ResponseEntity<>(_album, HttpStatus.ACCEPTED);
 	}
 
-	@GetMapping("/album/{id}/count")
+	@GetMapping("/n/{id}/count")
 	public ResponseEntity<Object> countCartasAlbum(@PathVariable("id") int id) {
 		return new ResponseEntity<>(albumService.countCartasAlbum(id), HttpStatus.OK);
 	}
