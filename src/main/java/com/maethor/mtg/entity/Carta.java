@@ -32,7 +32,6 @@ public class Carta implements Serializable {
 	@JsonIdentityReference(alwaysAsId = true)
 	private Album album;
 
-	private Integer amount;
 
 	// Getters y Setters
 
@@ -44,17 +43,6 @@ public class Carta implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Integer getAmount() {
-		if (amount == null) {
-			return 1;
-		}
-		return amount;
-	}
-
-	public void setAmount(Integer amount) {
-		this.amount = amount;
 	}
 
 	@JsonProperty(value = "scryfall_id")

@@ -1,6 +1,5 @@
 package com.maethor.mtg.service.imp;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,6 @@ import com.maethor.mtg.service.AlbumService;
 public class AlbumServiceImp implements AlbumService {
 
 	private final int albumsPorPagina = 16;
-	private final int cartasPorPagina = 9;
 
 	@Autowired
 	private AlbumDao albumDao;
@@ -36,21 +34,6 @@ public class AlbumServiceImp implements AlbumService {
 		Pageable pag = PageRequest.of(pagina, albumsPorPagina);
 		return albumDao.findByUsuario(usuario, pag);
 	}
-
-	@Override
-	public List<Carta> getAllCartasFromAlbum(Album album) {
-		return cartaDao.findAllByAlbum(album);
-	}
-	
-	@Override
-	public Page<Carta> getCartasFromAlbum(Album album, Integer pagina, Integer size) {
-		if (pagina == null)
-			pagina = 0;
-		if (size == null)
-			size = cartasPorPagina;
-		Pageable pag = PageRequest.of(pagina, size);
-		return cartaDao.findByAlbum(album, pag);
-	}
 	
 	@Override
 	public Album crearAlbum(String nombre, Usuario usuario) {
@@ -62,45 +45,8 @@ public class AlbumServiceImp implements AlbumService {
 	}
 
 	@Override
-	public Carta agregarCarta(String scryfallId, Integer albumId, Integer amount) {
-		List<Carta> cartasRepetidas = cartaDao.findByAlbumAndScryfallId(albumId, scryfallId);
-		// Coger lista de cartas repetidas
-		if (cartasRepetidas.size() > 0) {
-			Carta carta = cartasRepetidas.get(0);
-			carta.setAmount(carta.getAmount() + amount);
-			// Si hay repetidas, sumamos la cantidad actual a la primera repetida encontrada
-			
-			for(int i = 1; i < cartasRepetidas.size(); i++) {
-				Carta c = cartasRepetidas.get(i);
-				carta.setAmount(carta.getAmount() + c.getAmount());
-				cartaDao.delete(c);
-				// Si está más de una vez repetida, borramos todas las demás apariciones,
-				// sumando sus cantidades a la primera aparición, y dejamos solo la primera
-			}
-			return cartaDao.save(carta);
-			// Guardamos la carta encontrada con su nueva cantidad
-		}
-		
-		Carta carta = new Carta();
-		carta.setScryfallId(scryfallId);
-		carta.setAmount(amount);
-		// Si no está repetida la carta, la creamos
-		
-		Album album = albumDao.findById(albumId).orElseThrow();
-		if (album != null) {
-			carta.setAlbum(album);
-		}
-		return cartaDao.save(carta);
-	}
-
-	@Override
 	public Album getAlbum(Integer album_id) {
 		return albumDao.findById(album_id).orElseThrow();
-	}
-
-	@Override
-	public void eliminarCarta(Integer carta_id) {
-		cartaDao.deleteById(carta_id);
 	}
 
 	@Override
@@ -123,11 +69,7 @@ public class AlbumServiceImp implements AlbumService {
 	public int countCartasAlbum(int id) {
 		Album album = albumDao.findById(id).orElseThrow();
 		List<Carta> cartasAlbum = cartaDao.findAllByAlbum(album);
-		int numCartas = 0;
-		for (Carta carta : cartasAlbum) {
-			numCartas += carta.getAmount();
-		}
-		return numCartas;
+		return cartasAlbum.size();
 				
 	}
 
@@ -150,34 +92,4 @@ public class AlbumServiceImp implements AlbumService {
 		album.setColores(colores);
 		return albumDao.save(album);
 	}
-
-	@Override
-	public Carta getCarta(Integer id) {
-		return cartaDao.findById(id).orElse(null);
-	}
-
-	@Override
-	public List<String> getCartasAleatorias(int numero) {
-		List<String> cartas = new LinkedList<String>();
-		long totalCartas = cartaDao.count();
-
-		for (int i = 0; i < numero;) {
-			int indexCartaRandom = (int) Math.floor(Math.random() * totalCartas + 1);
-			Carta cartaSeleccionada = cartaDao.findById(indexCartaRandom).orElse(null);
-			if (cartaSeleccionada != null) {
-				if (!cartas.contains(cartaSeleccionada.getScryfallId()) || totalCartas < numero) {
-					cartas.add(cartaSeleccionada.getScryfallId());
-					i++;
-				}
-			}
-		}
-		return cartas;
-	}
-
-	@Override
-	public Carta getPortada(Integer album_id) {
-		Album album = getAlbum(album_id);
-		return album.getPortada();
-	}
-
 }
